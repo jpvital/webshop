@@ -1,16 +1,13 @@
 import React from 'react';
 import { YoutubeService } from '../../apis/youtube.service';
-import { InstagramService } from '../../apis/instagram.service';
 import { YoutubeEmbed } from '../../components/youtube.component';
 
 type MediaState = {
-    youtubeFeed: any,
-    instagramFeed: any
+    youtubeFeed: any
 }
 
 export class Media extends React.Component<{}, MediaState> {
     private youtubeService: YoutubeService;
-    private instagramService: InstagramService;
     
     constructor(props: any) {
         super(props);
@@ -20,16 +17,13 @@ export class Media extends React.Component<{}, MediaState> {
         script.async = true;
         document.body.appendChild(script);
 
-        this.state = { youtubeFeed: [], instagramFeed: undefined };
+        this.state = { youtubeFeed: [] };
         this.youtubeService = new YoutubeService();
-        this.instagramService = new InstagramService();
     }
 
     async componentDidMount(){
-        // const youtubeFeed = await this.youtubeService.getLatestVideos();
-        const instagramFeed = await this.instagramService.getFeed();
         const youtubeFeed = await this.youtubeService.getLatestVideos();
-        this.setState({ youtubeFeed, instagramFeed });
+        this.setState({ youtubeFeed });
     }
 
     render() {
