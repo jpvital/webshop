@@ -50,12 +50,10 @@ const cartItem = (item: any) => (
   </CartItem>
 );
 
-const cartBody = (itemCount: number, cartItems: any) => (
+const cartBody = (cartItems: any) => (
   <CartBodyArea>
     <CartBody>
-      {itemCount? (
-        <>{cartItems.map((item: any) => (cartItem(item)))}</>
-      ) : <Text>Your cart is empty.</Text>}
+      {cartItems.map((item: any) => (cartItem(item)))}
     </CartBody>
   </CartBodyArea>
 );
@@ -95,9 +93,20 @@ export const Cart = () => {
         <CartPopupRow>
           <CartPopup>
             {cartHeader(setShowModal)}
-            {cartBody(itemCount, cartItems)}
-            {cartTotal(itemPriceSum)}
-            {cartFooter(setShowModal)}
+            {
+              itemCount ?
+              <>
+                {cartBody(cartItems)}
+                {cartTotal(itemPriceSum)}
+                {cartFooter(setShowModal)}
+              </>
+              :
+              <CartBodyArea>
+                <CartBody>
+                  <Text style={{float: 'none'}}>Your cart is empty.</Text>
+                </CartBody>
+              </CartBodyArea>
+            }
           </CartPopup>
         </CartPopupRow>
       </CartPopupArea>
