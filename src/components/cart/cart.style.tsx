@@ -10,9 +10,7 @@ export const CartPopupArea = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
-    justify-content: center;
     align-items: center;
-    display: flex;
 `;
 
 export const CartPopupRow = styled.div`
@@ -52,24 +50,24 @@ export const CartHeader = styled.div`
     border-color: rgba(226, 232, 240, var(--border-opacity));
 `;
 
-export const CartBodyArea = styled.div`
-    position: relative;
-    padding: 1.2rem;
-    flex: 1 1 auto;
-`;
-
 export const CartBody = styled.div`
     --text-opacity: 1;
     color: rgba(113, 128, 150, var(--text-opacity));
     margin-top: 1rem;
     margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     line-height: 1.625;
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const CartItem = styled.div`
-    padding: 0.5rem;
+    padding: 3rem;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
     cursor: pointer;
     border-bottom-width: 1px;
     border-color: #f7fafc;
@@ -80,28 +78,42 @@ export const CartItem = styled.div`
 `;
 
 export const CartItemImage = styled.div`
-    padding: 0.5rem;
-    width: 3rem;
+    display: flex;
+    padding-right: 2rem;
 `;
 
 export const CartItemAttributes = styled.div`
-    width: 8rem;
+    display: flex;
+    flex-direction: row;
     font-size: 1.2rem;
-    flex: 1 1 auto;
 `;
 
 export const CartItemDescription = styled.div`
-    width: 50%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 `
 
-export const CartItemQuantityCounter = styled.div``;
+export const CartItemQuantityCounter = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`;
 
 export const CartItemPrice = styled.div`
     font-weight: 500;
-    align-items: flex-end;
-    flex-direction: column;
     display: flex;
+    width: 1rem;
+    flex-direction: column;
+    align-items: flex-end;
+`;
+
+export const CartTotal = styled.div`
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 `;
 
 export const CartFooter = styled.div`

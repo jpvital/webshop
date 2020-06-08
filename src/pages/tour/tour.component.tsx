@@ -1,4 +1,5 @@
 import React from 'react';
+import { PageContainer } from '../../components/generic/generic';
 export const Tour = () => {
-    return <div>Tour</div>
+    return <PageContainer>Tour</PageContainer>
 }

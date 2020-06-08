@@ -1,4 +1,5 @@
 import React from 'react';
+import { PageContainer } from '../../components/generic/generic';
 export const Home = () => {
-    return <div>Home</div>
+    return <PageContainer>Home</PageContainer>
 }

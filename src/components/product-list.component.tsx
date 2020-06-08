@@ -10,21 +10,26 @@ type ProductProps = {
 }
 
 const ProductFooter = styled.div``;
-const Product=styled.div``;
+const Product=styled.div`
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow-light);
+`;
 const product = (props: ProductProps) => (
     <Product key={props.id}>
         <Image src={props.images[0]}/>
         <ProductFooter>
-            <Text style={{width: '100%', textAlign: 'center'}}>{props.name}</Text>
+            <Text>{props.name}</Text>
             <Button onClick={() => store.dispatch(addToCart(props))}><Text>add to cart</Text></Button>
         </ProductFooter>
     </Product>
 );  
 
 const ProductList = styled.div`
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    display: grid;
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
 `;
 export const productList = (products: ProductProps[]) => (
     <ProductList>

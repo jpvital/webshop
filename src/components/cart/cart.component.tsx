@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import {
-  CartItem, CartItemImage, CartItemAttributes, CartItemPrice,
+  CartItemImage, CartItemAttributes, CartItemPrice,
   CartPopupArea, CartPopupRow, CartPopup, CartHeader,
-  CartBodyArea, CartBody, CartFooter, CartItemQuantityCounter, CartItemDescription
+  CartBody, CartFooter, CartItemQuantityCounter, CartItemDescription, CartTotal
 } from './cart.style';
 import { getCartData } from './cart.utils';
-import { Button, Text, Input, Headers } from '../generic/generic';
+import { Button, Text, Input, Headers, Image } from '../generic/generic';
 import { trashIcon, quantityIcons, cartIcon, closeIcon } from '../generic/icons';
 import { store, updateProductQuantity, removeItemFromCart } from "../../store";
 
@@ -21,41 +21,33 @@ const cartHeader = (onClickHandler: (set: boolean) => void) => (
   </CartHeader>
 );
 
-const cartItemAttributes = ({ name, quantity, id }:{[key:string]:string}) => (
+const cartItem = (item: any) => (
   <CartItemAttributes>
+    <CartItemImage><Image src={item.image} style = {{height: '5rem', width: '5rem'}} alt="img product"/></CartItemImage>
     <CartItemDescription>
-      <Text style={{width: '100%', fontWeight: 900}}>{name}</Text>
-      <Text style={{width: '100%'}}>Placeholder (size etc)</Text>
+      <Text style={{fontWeight: 900, width: '12.5rem'}}>{item.name}</Text>
+      <Text style={{width: '12.5rem'}}>Placeholder (size etc)</Text>
     </CartItemDescription>
     <CartItemQuantityCounter>
-      <Button onClick={() => store.dispatch(updateProductQuantity({ productId: id, increment: -1}))}>
+      <Button onClick={() => store.dispatch(updateProductQuantity({ productId: item.id, increment: -1}))}>
         {quantityIcons.subtract()}
       </Button>
-      <Input style={{ width: '10%' }} type='text' value={quantity} onChange={()=> { console.log('Value change'); }} />
-      <Button onClick={() => store.dispatch(updateProductQuantity({ productId: id, increment: 1}))}>
+      <Input type='text' value={item.quantity} onChange={()=> { console.log('Value change'); }} />
+      <Button onClick={() => store.dispatch(updateProductQuantity({ productId: item.id, increment: 1}))}>
         {quantityIcons.add()}
       </Button>
     </CartItemQuantityCounter>
+    <CartItemPrice>
+      <div onClick={()=>store.dispatch(removeItemFromCart({ productId : item.id}))}>{trashIcon()}</div>
+      <Text style={{wordWrap:'break-word'}}>£{item.price*item.quantity}</Text>
+    </CartItemPrice>
   </CartItemAttributes>
 );
 
-const cartItem = (item: any) => (
-  <CartItem key={item.id}>
-    <CartItemImage><img src={item.image} alt="img product"/></CartItemImage>
-    {cartItemAttributes(item)}
-    <CartItemPrice>
-      <div onClick={()=>store.dispatch(removeItemFromCart({ productId: item.id}))}>{trashIcon()}</div>
-      <Text style={{wordWrap:'break-word'}}>£{item.price*item.quantity}</Text>
-    </CartItemPrice>
-  </CartItem>
-);
-
 const cartBody = (cartItems: any) => (
-  <CartBodyArea>
-    <CartBody>
-      {cartItems.map((item: any) => (cartItem(item)))}
-    </CartBody>
-  </CartBodyArea>
+  <CartBody>
+    {cartItems.map((item: any) => (cartItem(item)))}
+  </CartBody>
 );
 
 const cartFooter = (onClickHandler: (set: boolean) => void) => (
@@ -70,12 +62,12 @@ const cartFooter = (onClickHandler: (set: boolean) => void) => (
 );
 
 const cartTotal = (itemPriceSum: number) => (
-  <CartBodyArea>
-    <Headers.Header3><Text>Shipping and Tax:</Text></Headers.Header3><br></br><br></br>
-    <Text>Subtotal</Text><Text style={{float: 'right'}}>£{itemPriceSum}</Text><br></br>
-    <Text>Tax</Text><Text style={{float: 'right'}}>£0.00</Text><br></br>
-    <Text>Order Total</Text><Text style={{float: 'right'}}>£{itemPriceSum}</Text>
-  </CartBodyArea>
+  <CartTotal>
+    <Headers.Header3><Text>Shipping and Tax:</Text></Headers.Header3><br></br>
+    <Text>Subtotal: £{itemPriceSum}</Text>
+    <Text>Tax £0.00</Text>
+    <Text>Order Total £{itemPriceSum}</Text>
+  </CartTotal>
 );
 
 export const Cart = () => {
@@ -86,7 +78,7 @@ export const Cart = () => {
   
   return (
   <>
-    <Button onClick={() => setShowModal(true)}>{cartIcon()} {itemCount}</Button>
+    <Button style={{ marginBottom: '2rem' }} onClick={() => setShowModal(true)}>{cartIcon()} {itemCount}</Button>
     {showModal ? (
     <>
       <CartPopupArea>
@@ -101,11 +93,9 @@ export const Cart = () => {
                 {cartFooter(setShowModal)}
               </>
               :
-              <CartBodyArea>
-                <CartBody>
-                  <Text style={{float: 'none'}}>Your cart is empty.</Text>
-                </CartBody>
-              </CartBodyArea>
+              <CartBody>
+                <Text>Your cart is empty.</Text>
+              </CartBody>
             }
           </CartPopup>
         </CartPopupRow>

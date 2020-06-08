@@ -9,9 +9,12 @@ require('dotenv').config();
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App" style={{display: 'flex'}}>
       <Provider store={store}>
-        <Cart />{socialNavBar}{webshopRouter}
+        <div style={{width: '20rem', order: 2}}>
+          <Cart />{socialNavBar}
+        </div>
+        {webshopRouter}
       </Provider>
     </div>
   );

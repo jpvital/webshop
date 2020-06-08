@@ -1,6 +1,7 @@
 import React from 'react';
 import { StripeService } from '../../apis/stripe.service';
 import { productList } from '../../components/product-list.component';
+import { PageContainer } from '../../components/generic/generic';
 
 type ShopState = {
     products: any,
@@ -21,6 +22,6 @@ export class Shop extends React.Component<{}, ShopState>{
     }
 
     render(){
-        return productList(this.state.products)
+        return <PageContainer style={{flex:1}}>{productList(this.state.products)}</PageContainer>
     }
 };

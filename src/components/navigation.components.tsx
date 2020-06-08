@@ -8,6 +8,7 @@ import { Shop } from '../pages/shop/shop.component';
 
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { socialMediaIcons } from './generic/icons';
+import { NavBar } from './generic/generic';
 
 type TextNavigationItem = {
     title: string,
@@ -85,14 +86,10 @@ const socialItems: IconNavigationItem[] = [
     },
 ];
 
-const sectionNavbarStyle: React.CSSProperties = {
-    float: 'left',
-}
-
 const SectionNavBar =
-    <ul style={sectionNavbarStyle} className='menu-list'>
-        {navigationItems.map(item => <Link key={item.title} to={item.link}><li className='menu-item'>{item.title}</li></Link>)}
-    </ul>
+    <NavBar style={{ width: '20rem', paddingTop: '5rem' }}>
+        {navigationItems.map(item => <Link key={item.title} to={item.link}><li>{item.title}</li></Link>)}
+    </NavBar>
 ;
 
 const Routes =
@@ -105,12 +102,9 @@ export const webshopRouter =
     <Router>{SectionNavBar}{Routes}</Router>
 ;
 
-const socialNavbarStyle: React.CSSProperties = {
-    float: 'right',
-}
 export const socialNavBar =
-<ul style={socialNavbarStyle} className='social-list'>
-    {socialItems.map(item => <li key={item.key} className='social-item' ><a href={item.link}>{item.icon()}</a></li>)}
-</ul>
+    <NavBar style={{alignItems: 'flex-end', marginLeft: 'auto'}}>
+        {socialItems.map(item => <li key={item.key}><a href={item.link}>{item.icon()}</a></li>)}
+    </NavBar>
 ;
 

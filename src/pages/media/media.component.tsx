@@ -1,6 +1,7 @@
 import React from 'react';
 import { YoutubeService } from '../../apis/youtube.service';
 import { YoutubeEmbed } from '../../components/youtube.component';
+import { PageContainer } from '../../components/generic/generic';
 
 type MediaState = {
     youtubeFeed: any
@@ -27,17 +28,24 @@ export class Media extends React.Component<{}, MediaState> {
     }
 
     render() {
-        const youtubeContainer = <div>{
-            this.state.youtubeFeed.length ? this.state.youtubeFeed.map((videoId: string) => <YoutubeEmbed key={videoId} videoId={videoId}/>) : 'No videos'}</div>;
-        return <div>
-                    Media
-                    {youtubeContainer}
-                    <a
-                        className="twitter-timeline" data-width="300"
-                        data-height="400" data-theme="dark" href="https://twitter.com/ApiJoao?ref_src=twsrc%5Etfw">
-                        A Twitter List by Joao Campos
-                    </a>
-                </div>;
-        
+        const youtubeContainer = (
+            <div>
+                {
+                    this.state.youtubeFeed.length ?
+                    this.state.youtubeFeed.map((videoId: string) => <YoutubeEmbed key={videoId} videoId={videoId}/>)
+                    : 'No videos'
+                }
+            </div>
+        );
+        return (
+            <PageContainer>
+                Media
+                {youtubeContainer}
+                <a className="twitter-timeline" data-width="300" data-height="400"
+                    data-theme="dark" href="https://twitter.com/ApiJoao?ref_src=twsrc%5Etfw">
+                    A Twitter List by Joao Campos
+                </a>
+            </PageContainer>
+        );
     }
 }
