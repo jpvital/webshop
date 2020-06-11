@@ -12,8 +12,8 @@ export class Shop extends React.Component<{}, ShopState>{
 
     constructor(props: any){
         super(props);
-        this.stripeService = new StripeService();
         this.state = { products: [] };
+        this.stripeService = new StripeService();
     }
 
     async componentDidMount(){

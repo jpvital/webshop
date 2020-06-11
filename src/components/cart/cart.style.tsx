@@ -63,26 +63,12 @@ export const CartBody = styled.div`
     flex-direction: column;
 `;
 
-export const CartItem = styled.div`
-    padding: 3rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap
-    cursor: pointer;
-    border-bottom-width: 1px;
-    border-color: #f7fafc;
-    background: white;
-    &:hover{
-    background-color: gray;
-    }
-`;
-
 export const CartItemImage = styled.div`
     display: flex;
     padding-right: 2rem;
 `;
 
-export const CartItemAttributes = styled.div`
+export const CartItem = styled.div`
     display: flex;
     flex-direction: row;
     font-size: 1.2rem;

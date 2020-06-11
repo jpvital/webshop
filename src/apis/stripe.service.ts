@@ -1,20 +1,9 @@
-import axios from 'axios';
+import { LambdaService } from './lambda.service';
 
 export class StripeService {
-    // private apiKey: string | undefined;
-    private apiSecret: string | undefined;
-    private apiUrl: string | undefined;
+    private apiService = new LambdaService();
     
-    constructor() {
-        // this.apiKey = process.env.REACT_APP_STRIPE_API_KEY_TEST;
-        this.apiSecret = process.env.REACT_APP_STRIPE_API_SECRET_TEST;
-        this.apiUrl = process.env.REACT_APP_STRIPE_API_HOST;
+    getProducts() {
+        return this.apiService.getStripeProducts();
     }
-
-    async getProducts() {
-        const stripeApiProductsUrl: string = `${this.apiUrl}/v1/products`;
-        const products = await axios.get(stripeApiProductsUrl, { params: { key: this.apiSecret } });
-        return products.data.data;
-    }
-
 }

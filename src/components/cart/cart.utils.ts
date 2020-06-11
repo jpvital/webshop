@@ -12,3 +12,7 @@ export const getCartData = (cart: any) => {
     
     return { itemCount, itemPriceSum, cartItems };
 };
+
+export const totalPlusTaxes = (total: number) => {
+    return total;
+  }

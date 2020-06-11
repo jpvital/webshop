@@ -1,6 +1,6 @@
 import React from 'react';
 import { YoutubeService } from '../../apis/youtube.service';
-import { YoutubeEmbed } from '../../components/youtube.component';
+import { YoutubeEmbed } from '../../components/youtube-embed.component';
 import { PageContainer } from '../../components/generic/generic';
 
 type MediaState = {
