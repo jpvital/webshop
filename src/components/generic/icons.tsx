@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faYoutubeSquare, faTwitterSquare,
     faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
-import { faTrashAlt, faPlus, faMinus, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faPlus, faMinus, faShoppingCart, faWindowClose, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export const socialMediaIcons = {
     facebook: () => <FontAwesomeIcon icon={faFacebookSquare} />,
@@ -17,6 +17,10 @@ export const trashIcon = () => (
 
 export const cartIcon = () => (
     <FontAwesomeIcon icon={faShoppingCart} />
+);
+
+export const userIcon = () => (
+    <FontAwesomeIcon icon={faUser} />
 );
 
 export const closeIcon = () => (

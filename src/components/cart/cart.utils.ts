@@ -15,4 +15,4 @@ export const getCartData = (cart: any) => {
 
 export const totalPlusTaxes = (total: number) => {
     return total;
-  }
+}

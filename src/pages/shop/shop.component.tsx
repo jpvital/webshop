@@ -1,5 +1,5 @@
 import React from 'react';
-import { StripeService } from '../../apis/stripe.service';
+import { StripeService } from '../../services/stripe.service';
 import { productList } from '../../components/product-list.component';
 import { PageContainer } from '../../components/generic/generic';
 

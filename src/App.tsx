@@ -4,6 +4,7 @@ import { socialNavBar, webshopRouter } from './components/navigation.components'
 import { Cart } from './components/cart/cart.component';
 import { Provider } from 'react-redux';
 import { store } from "./store";
+import { Login } from './components/login/login.component';
 
 require('dotenv').config();
 
@@ -12,7 +13,11 @@ const App = () => {
     <div className="App" style={{display: 'flex'}}>
       <Provider store={store}>
         <div style={{width: '20rem', order: 2}}>
-          <Cart />{socialNavBar}
+          <div style={{display: 'flex', alignItems: 'row'}}>
+            <Cart />
+            <Login />
+          </div>
+          {socialNavBar}
         </div>
         {webshopRouter}
       </Provider>

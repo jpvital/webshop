@@ -32,12 +32,13 @@ export const Text=styled.span`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: block;
 `;
 
 export const Input=styled.input`
     text-align: ${props => (props.theme.textAlign ? props.theme.textAlign : 'center')};
     width: 15%;
+    border-width: 1px;
+    border-radius: 0.75rem;
 `;
 
 export const Headers = {
@@ -67,4 +68,16 @@ export const NavBar=styled.ul`
     display: flex;
     flex-direction: ${props => (props.theme.flexDirection ? props.theme.flexDirection : 'column')};
     align-items: ${props => (props.theme.alignItems ? props.theme.alignItems : 'flex-start')};
+`;
+
+export const Form=styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    alignItems: left;
+`;
+
+export const FormLabel=styled.label`
+    display: flex;
+    flex-direction: column;
 `;

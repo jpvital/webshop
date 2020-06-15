@@ -1,7 +1,7 @@
-import { LambdaService } from './lambda.service';
+import { LambdaApi } from '../apis/lambda.api';
 
 export class StripeService {
-    private apiService = new LambdaService();
+    private apiService: LambdaApi = new LambdaApi();
     
     getProducts() {
         return this.apiService.getStripeProducts();
