@@ -12,13 +12,11 @@ export class LambdaService {
         return axios.post(`${this.lambdaHost}/${this.functionUrls.addOrder}`, payload);
     };
 
-    async getYoutubeFeed(){
-        const response = await axios.get(`${this.lambdaHost}/${this.functionUrls.getYoutubeFeed}`);
-        return response.data;
+    getYoutubeFeed(){
+        return axios.get(`${this.lambdaHost}/${this.functionUrls.getYoutubeFeed}`).then(res => res.data);
     };
 
-    async getStripeProducts(){
-        const response = await axios.get(`${this.lambdaHost}/${this.functionUrls.getStripeProducts}`);
-        return response.data;
+    getStripeProducts(){
+        return axios.get(`${this.lambdaHost}/${this.functionUrls.getStripeProducts}`).then(res => res.data);
     };
 }

@@ -5,6 +5,7 @@ export const Button = styled.button`
     --bg-opacity: 1;
     --text-opacity: 1;
     display: flex;
+    align-items: center;
     background-color: ${props => (props.theme.backgroundColor ? props.theme.backgroundColor : 'black')};
     border-radius: ${props => (props.theme.borderRadius ? props.theme.borderRadius : '0.75rem')};
     border-width: ${props => (props.theme.borderWidth ? props.theme.borderWidth : '1px')};
@@ -68,16 +69,4 @@ export const NavBar=styled.ul`
     display: flex;
     flex-direction: ${props => (props.theme.flexDirection ? props.theme.flexDirection : 'column')};
     align-items: ${props => (props.theme.alignItems ? props.theme.alignItems : 'flex-start')};
-`;
-
-export const Form=styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    alignItems: left;
-`;
-
-export const FormLabel=styled.label`
-    display: flex;
-    flex-direction: column;
 `;

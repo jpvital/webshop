@@ -6,15 +6,21 @@ import {
   FormFieldKey, FormFieldInput
 } from '../generic/forms';
 
-export function LoginForm() {
+export function RegistrationForm() {
   const { value: email, bind: bindEmail } = useInput('');
+  const { value: firstName, bind: bindFirstName } = useInput('');
   const { value: password, bind: bindPassword } = useInput('');
 
   const fields = [
     {
+      field: 'firstName', key: 'First Name',
+      validator: inputValidators.firstName,
+      bind: bindFirstName, type: 'text',
+    },
+    {
       field: 'email', key: 'E-mail',
-      validator: inputValidators.email,
-      bind: bindEmail, type: 'text',
+      validator: inputValidators.email, type: 'text',
+      bind: bindEmail, labelProps: { paddingTop: '2rem', }
     },
     {
       field: 'password', key: 'Password',
@@ -38,7 +44,7 @@ export function LoginForm() {
         ))
       }
       <FormSubmitButton type='submit'>
-          <FormSubmitButtonText>Login</FormSubmitButtonText>
+          <FormSubmitButtonText>Register</FormSubmitButtonText>
       </FormSubmitButton>
     </Form>
   );

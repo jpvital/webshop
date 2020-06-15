@@ -7,7 +7,7 @@ import {
 import { getCartData, totalPlusTaxes } from './cart.utils';
 import { Button, Text, Input, Headers, Image } from '../generic/generic';
 import { trashIcon, quantityIcons, cartIcon, closeIcon } from '../generic/icons';
-import { store, updateProductQuantity, removeItemFromCart } from "../../store";
+import { store, updateProductQuantity, removeItemFromCart } from "../../utils/store";
 import { LambdaService } from '../../services/lambda.service';
 import { PopupBackground, PopupContent, PopupSection, PopupHeader } from '../generic/popups';
 

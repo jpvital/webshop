@@ -3,7 +3,7 @@ import { Button, Text, Headers } from '../generic/generic';
 import { userIcon, closeIcon } from '../generic/icons';
 import { PopupBackground, PopupContent, PopupSection, PopupHeader } from '../generic/popups';
 import { LoginForm } from './login.form';
-import { RegisterForm } from './register.form';
+import { RegistrationForm } from './registration.form';
 
 export const Login = () => {
     const [showModal, setShowModal] = React.useState(false);
@@ -33,7 +33,7 @@ export const Login = () => {
                                 <Text style={{textAlign: 'center', paddingTop: '2rem'}} onClick={() => setFormType(false)}>
                                     Don't have an account? Sign up!
                                 </Text>
-                            </> : <RegisterForm />}
+                            </> : <RegistrationForm />}
                     </PopupSection>
                 </PopupContent>
             </PopupBackground> : null}

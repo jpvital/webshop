@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Image, Text, Button } from './generic/generic';
-import { store, addToCart } from "../store";
+import { store, addToCart } from '../utils/store';
 
 type ProductProps = {
     id: string,
     name: string,
     images: string[],
-}
+};
 
 const ProductFooter = styled.div``;
 const Product=styled.div`
