@@ -1,7 +1,7 @@
-import { LambdaApi } from "../apis/lambda.api";
+import { LambdaService } from "./lambda.service";
 
 export class YoutubeService {
-    private apiService: LambdaApi = new LambdaApi();
+    private apiService: LambdaService = new LambdaService();
 
     getLatestVideos() {
         return this.apiService.getYoutubeFeed();

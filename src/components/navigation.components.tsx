@@ -12,53 +12,62 @@ import { NavBar } from './generic/generic';
 
 type TextNavigationItem = {
     title: string,
-    link: string,
-    exact: boolean,
-    component: any
+    routeProps: { 
+        path: string,
+        exact?: boolean,
+        component: any
+    }
 }
 
 type IconNavigationItem = {
     icon: any,
-    link: string,
+    path: string,
     key: string,
 }
 
 const navigationItems: TextNavigationItem[] = [
     {
         title: 'home',
-        link: '/',
-        component: Home,
-        exact: true,
+        routeProps: {
+            path: '/',
+            component: Home,
+            exact: true,
+        }
     },
     {
         title: 'music',
-        link: '/music',
-        component: Music,
-        exact: false,
+        routeProps: {
+            path: '/music',
+            component: Music,
+        }
     },
     {
         title: 'tour dates',
-        link: '/tour-dates',
-        component: Tour,
-        exact: false,
+        routeProps: {
+            path: '/tour-dates',
+            component: Tour,
+        }
     },
     {
         title: 'media',
-        link: '/media',
-        component: Media,
-        exact: false,
+        routeProps: {
+            path: '/media',
+            component: Media,
+        }
     },
     {
         title: 'contacts',
-        link: '/contacts',
-        component: Contacts,
-        exact: false,
+        routeProps: {
+            path: '/contacts',
+            component: Contacts,
+        }
     },
     {
         title: 'shop',
-        link: '/shop',
-        component: Shop,
-        exact: false,
+        routeProps: {
+            path: '/shop',
+            component: Shop,
+        }
     }
 ];
 
@@ -66,35 +75,35 @@ const mappingUrl: string = '/lnk.to';
 const socialItems: IconNavigationItem[] = [
     {
         icon: socialMediaIcons.facebook,
-        link: `${mappingUrl}/fb`,
+        path: `${mappingUrl}/fb`,
         key: 'fb',
     },
     {
         icon: socialMediaIcons.twitter,
-        link: `${mappingUrl}/twitter`,
+        path: `${mappingUrl}/twitter`,
         key: 'twitter',
     },
     {
         icon: socialMediaIcons.youtube,
-        link: `${mappingUrl}/yt`,
+        path: `${mappingUrl}/yt`,
         key: 'yt',
     },
     {
         icon: socialMediaIcons.instagram,
-        link: `${mappingUrl}/ig`,
+        path: `${mappingUrl}/ig`,
         key: 'ig',
     },
 ];
 
 const SectionNavBar =
     <NavBar style={{ width: '20rem', paddingTop: '5rem' }}>
-        {navigationItems.map(item => <Link key={item.title} to={item.link}><li>{item.title}</li></Link>)}
+        {navigationItems.map(item => <Link key={item.title} to={item.routeProps.path}><li>{item.title}</li></Link>)}
     </NavBar>
 ;
 
 const Routes =
     <Switch>
-        {navigationItems.map(item => <Route key={item.title} path={item.link} exact component={item.component}></Route>)}
+        {navigationItems.map(item => <Route key={item.title} {...item.routeProps}></Route>)}
     </Switch>
 ;
 
@@ -104,7 +113,7 @@ export const webshopRouter =
 
 export const socialNavBar =
     <NavBar style={{alignItems: 'flex-end', marginLeft: 'auto'}}>
-        {socialItems.map(item => <li key={item.key}><a href={item.link}>{item.icon()}</a></li>)}
+        {socialItems.map(item => <li key={item.key}><a href={item.path}>{item.icon()}</a></li>)}
     </NavBar>
 ;
 

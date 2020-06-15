@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export class LambdaApi {
+export class LambdaService {
     private lambdaHost = 'https://88r83xogh7.execute-api.eu-west-2.amazonaws.com/Dev';
     private functionUrls = {
         addOrder: 'add-order',

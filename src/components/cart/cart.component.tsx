@@ -8,7 +8,7 @@ import { getCartData, totalPlusTaxes } from './cart.utils';
 import { Button, Text, Input, Headers, Image } from '../generic/generic';
 import { trashIcon, quantityIcons, cartIcon, closeIcon } from '../generic/icons';
 import { store, updateProductQuantity, removeItemFromCart } from "../../store";
-import { LambdaApi } from '../../apis/lambda.api';
+import { LambdaService } from '../../services/lambda.service';
 import { PopupBackground, PopupContent, PopupSection, PopupHeader } from '../generic/popups';
 
 export const Cart = () => {
@@ -16,7 +16,7 @@ export const Cart = () => {
   const cartFromState = useSelector((state: any) => state.cart);
   const { itemCount, itemPriceSum, cartItems } = getCartData(cartFromState);
   const [showModal, setShowModal] = React.useState(false);
-  const api = new LambdaApi();
+  const api = new LambdaService();
 
   const handleCheckout = (orderData: any) => {
     api.addOrder({ UserId: 'no-users-yet', OrderTotal: totalPlusTaxes(orderData.itemPriceSum) });
