@@ -5,11 +5,12 @@ import {
   CartItemQuantityCounter, CartItemDescription
 } from './cart.style';
 import { getCartData, totalPlusTaxes } from './cart.utils';
-import { Button, Text, Input, Headers, Image } from '../generic/generic';
+import { Button, Text, ButtonText, Input, Headers, Image } from '../generic/generic';
 import { trashIcon, quantityIcons, cartIcon, closeIcon } from '../generic/icons';
 import { store, updateProductQuantity, removeItemFromCart } from "../../utils/store";
 import { LambdaService } from '../../services/lambda.service';
 import { PopupBackground, PopupContent, PopupSection, PopupHeader } from '../generic/popups';
+import verbose from '../../global/verbose';
 
 export const Cart = () => {
   
@@ -71,7 +72,7 @@ export const Cart = () => {
         style={{width: '100%', paddingLeft: '0px', paddingRight: '0px', transition: "all .15s ease" }}
         onClick={() => handleCheckout(orderData)}
       >
-        <Text style={{textAlign: 'center', width: '100%'}}>Checkout</Text>
+        <ButtonText style={{textAlign: 'center', width: '100%'}}>Checkout</ButtonText>
       </Button>
     </PopupSection>
   );
@@ -101,7 +102,7 @@ export const Cart = () => {
                 {cartFooter({ itemCount, itemPriceSum, cartItems })}
               </>
               :
-              <PopupSection><Text>Your cart is empty.</Text></PopupSection>
+              <PopupSection><Text>{verbose.INFO.EMPTY_CART}</Text></PopupSection>
             }
           </PopupContent>
       </PopupBackground>

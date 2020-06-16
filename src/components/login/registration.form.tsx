@@ -1,51 +1,35 @@
-import * as React from 'react';
-import { useInput } from '../../utils/hooks';
 import { inputValidators } from '../../utils/validators';
-import {
-  Form, FormFieldLabel, FormSubmitButton, FormSubmitButtonText,
-  FormFieldKey, FormFieldInput
-} from '../generic/forms';
+import { AuthForm, Autocomplete } from '../generic/forms';
+import * as React from 'react';
+
+type HandleSubmitProps = {
+  email: string;
+  password: string;
+  firstName: string;
+}
 
 export function RegistrationForm() {
-  const { value: email, bind: bindEmail } = useInput('');
-  const { value: firstName, bind: bindFirstName } = useInput('');
-  const { value: password, bind: bindPassword } = useInput('');
-
   const fields = [
     {
-      field: 'firstName', key: 'First Name',
+      key: 'firstName', display: 'First Name',
       validator: inputValidators.firstName,
-      bind: bindFirstName, type: 'text',
+      type: 'text', autoComplete: Autocomplete.ON,
     },
     {
-      field: 'email', key: 'E-mail',
-      validator: inputValidators.email, type: 'text',
-      bind: bindEmail, labelProps: { paddingTop: '2rem', }
+      key: 'email', display: 'E-mail',
+      validator: inputValidators.email,
+      type: 'text', autoComplete: Autocomplete.ON,
     },
     {
-      field: 'password', key: 'Password',
+      key: 'password', display: 'Password',
       validator: inputValidators.password, type: 'password',
-      bind: bindPassword, labelProps:{ paddingTop: '2rem', paddingBottom: '1.8rem' }
+      autoComplete: Autocomplete.OFF,
     }
   ];
 
-  const handleSubmit = (): void => {
-    // validateForm({email, firstName, password});
+  const handleSubmit = (props: HandleSubmitProps): void => {
+    const { email, password, firstName } = props;
   };
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      {
-        fields.map(field => (
-          <FormFieldLabel {...field.labelProps}>
-            <FormFieldKey>{field.key}</FormFieldKey>
-            <FormFieldInput {...field.type} {...field.bind}/>
-          </FormFieldLabel>
-        ))
-      }
-      <FormSubmitButton type='submit'>
-          <FormSubmitButtonText>Register</FormSubmitButtonText>
-      </FormSubmitButton>
-    </Form>
-  );
+  return <AuthForm fields={fields} onSubmit={handleSubmit} buttonText='Register'/>
 };

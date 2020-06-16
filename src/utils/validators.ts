@@ -9,6 +9,7 @@ const VALIDATION_ERROR_MESSAGES = {
     PASSWORD_LOWER_REQUIRED: 'Password must contain at least one lowercase letter',
     PASSWORD_DIGIT_REQUIRED: 'Password must contain at least one digit',
     PASSWORD_SYMBOL_REQUIRED: 'Password must contain at least one symbol',
+    PASSWORD_DEFAULT: 'Password must be 8 characters long and contain one uppercase and one lowercase letter, one digit and one special character',
     NAME_REQUIRED: 'Please enter a name',
     NAME_HAS_DIGIT: 'Name cannot contain numeric values',
 };
@@ -23,13 +24,17 @@ const validatePassword = (password: string): string[] => {
 
     const errors: string[] = [];
     const passwordValidationErrors = passwordSchema.validate(password, { list: true }) as string[];
-    passwordValidationErrors.forEach(err => {
-        if (err==='min'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_MIN_8);}
-        else if (err==='uppercase'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_UPPER_REQUIRED);}
-        else if (err==='lowercase'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_LOWER_REQUIRED);}
-        else if (err==='digits'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_DIGIT_REQUIRED);}
-        else if (err==='symbols'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_SYMBOL_REQUIRED);}
-    });
+    // passwordValidationErrors.forEach(err => {
+    //     if (err==='min'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_MIN_8);}
+    //     else if (err==='uppercase'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_UPPER_REQUIRED);}
+    //     else if (err==='lowercase'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_LOWER_REQUIRED);}
+    //     else if (err==='digits'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_DIGIT_REQUIRED);}
+    //     else if (err==='symbols'){errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_SYMBOL_REQUIRED);}
+    // });
+    // return errors;
+    if (passwordValidationErrors.length) {
+        errors.push(VALIDATION_ERROR_MESSAGES.PASSWORD_DEFAULT);
+    }
     return errors;
 }
 
@@ -42,7 +47,7 @@ const validateEmail = (email: string): string[] => {
 }
 
 const validateName = (name: string): string[] => {
-    if (name){
+    if (!name){
         return [VALIDATION_ERROR_MESSAGES.NAME_REQUIRED];
     } else if (/\d/.test(name)){
         return [VALIDATION_ERROR_MESSAGES.NAME_HAS_DIGIT];

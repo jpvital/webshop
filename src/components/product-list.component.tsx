@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image, Text, Button } from './generic/generic';
+import { Image, Text, Button, ButtonText } from './generic/generic';
 import { store, addToCart } from '../utils/store';
+import verbose from '../global/verbose';
 
 type ProductProps = {
     id: string,
@@ -22,7 +23,9 @@ const product = (props: ProductProps) => (
         <Image src={props.images[0]}/>
         <ProductFooter>
             <Text>{props.name}</Text>
-            <Button onClick={() => store.dispatch(addToCart(props))}><Text>add to cart</Text></Button>
+            <Button onClick={() => store.dispatch(addToCart(props))}>
+                <ButtonText>{verbose.USER_ACTION.ADD_TO_CART}</ButtonText>
+            </Button>
         </ProductFooter>
     </Product>
 );  

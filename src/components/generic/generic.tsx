@@ -33,6 +33,11 @@ export const Text=styled.span`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: ${(props: any) => (props.color ? props.color : 'var(--color-primary)')};
+`;
+
+export const ButtonText=styled(Text)`
+    color: ${(props: any) => (props.color || 'var(--color-secondary)')};
 `;
 
 export const Input=styled.input`

@@ -1,45 +1,30 @@
-import * as React from 'react';
-import { useInput } from '../../utils/hooks';
 import { inputValidators } from '../../utils/validators';
-import {
-  Form, FormFieldLabel, FormSubmitButton, FormSubmitButtonText,
-  FormFieldKey, FormFieldInput
-} from '../generic/forms';
+import { AuthForm, Autocomplete } from '../generic/forms';
+import * as React from 'react';
+
+type HandleSubmitProps = {
+  email: string;
+  password: string;
+}
 
 export function LoginForm() {
-  const { value: email, bind: bindEmail } = useInput('');
-  const { value: password, bind: bindPassword } = useInput('');
-
   const fields = [
     {
-      field: 'email', key: 'E-mail',
+      key: 'email', display: 'E-mail',
       validator: inputValidators.email,
-      bind: bindEmail, type: 'text',
+      type: 'text',
+      autoComplete: Autocomplete.ON
     },
     {
-      field: 'password', key: 'Password',
+      key: 'password', display: 'Password',
       validator: inputValidators.password, type: 'password',
-      bind: bindPassword, labelProps:{ paddingTop: '2rem', paddingBottom: '1.8rem' }
+      autoComplete: Autocomplete.OFF
     }
   ];
 
-  const handleSubmit = (): void => {
-    // validateForm({email, firstName, password});
+  const handleSubmit = (props: HandleSubmitProps): void => {
+    const { email, password } = props;
   };
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      {
-        fields.map(field => (
-          <FormFieldLabel {...field.labelProps}>
-            <FormFieldKey>{field.key}</FormFieldKey>
-            <FormFieldInput {...field.type} {...field.bind}/>
-          </FormFieldLabel>
-        ))
-      }
-      <FormSubmitButton type='submit'>
-          <FormSubmitButtonText>Login</FormSubmitButtonText>
-      </FormSubmitButton>
-    </Form>
-  );
+  return <AuthForm fields={fields} onSubmit={handleSubmit} buttonText='Login'/>
 };
