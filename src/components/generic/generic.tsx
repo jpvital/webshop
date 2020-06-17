@@ -30,9 +30,6 @@ export const Image=styled.img`
 
 export const Text=styled.span`
     text-align: ${props => (props.theme.textAlign ? props.theme.textAlign : 'left')};
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: ${(props: any) => (props.color ? props.color : 'var(--color-primary)')};
 `;
 
@@ -72,6 +69,6 @@ export const PageContainer=styled.div`
 
 export const NavBar=styled.ul`
     display: flex;
-    flex-direction: ${props => (props.theme.flexDirection ? props.theme.flexDirection : 'column')};
+    flex-direction: column;
     align-items: ${props => (props.theme.alignItems ? props.theme.alignItems : 'flex-start')};
 `;

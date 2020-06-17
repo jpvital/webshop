@@ -12,6 +12,9 @@ const VALIDATION_ERROR_MESSAGES = {
     PASSWORD_DEFAULT: 'Password must be 8 characters long and contain one uppercase and one lowercase letter, one digit and one special character',
     NAME_REQUIRED: 'Please enter a name',
     NAME_HAS_DIGIT: 'Name cannot contain numeric values',
+    CONFIRMATION_CODE_REQUIRED: 'Please enter confirmation code',
+    CONFIRMATION_CODE_LENGTH: 'Code should be 6 characters long',
+    CONFIRMATION_CODE_DIGITS: 'Code should only contain digits',
 };
 
 const validatePassword = (password: string): string[] => {
@@ -55,8 +58,19 @@ const validateName = (name: string): string[] => {
     return [];
 }
 
+const validateConfirmationCode = (code: string): string[] => {
+    if (!code) {
+        return [VALIDATION_ERROR_MESSAGES.CONFIRMATION_CODE_REQUIRED];
+    } else if (!/^[0-9]+$/.test(code)){
+        return [VALIDATION_ERROR_MESSAGES.CONFIRMATION_CODE_DIGITS];
+    } else if (code.length!==6) {
+        return [VALIDATION_ERROR_MESSAGES.CONFIRMATION_CODE_LENGTH];
+    } return [];
+}
+
 export const inputValidators = {
     email: validateEmail,
     password: validatePassword,
     firstName: validateName,
+    confirmationCode: validateConfirmationCode,
 };

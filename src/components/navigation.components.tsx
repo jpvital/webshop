@@ -15,15 +15,15 @@ type TextNavigationItem = {
     routeProps: { 
         path: string,
         exact?: boolean,
-        component: any
-    }
-}
+        component: any,
+    },
+};
 
 type IconNavigationItem = {
     icon: any,
     path: string,
     key: string,
-}
+};
 
 const navigationItems: TextNavigationItem[] = [
     {
@@ -32,14 +32,14 @@ const navigationItems: TextNavigationItem[] = [
             path: '/',
             component: Home,
             exact: true,
-        }
+        },
     },
     {
         title: 'music',
         routeProps: {
             path: '/music',
             component: Music,
-        }
+        },
     },
     {
         title: 'tour dates',
@@ -53,22 +53,22 @@ const navigationItems: TextNavigationItem[] = [
         routeProps: {
             path: '/media',
             component: Media,
-        }
+        },
     },
     {
         title: 'contacts',
         routeProps: {
             path: '/contacts',
             component: Contacts,
-        }
+        },
     },
     {
         title: 'shop',
         routeProps: {
             path: '/shop',
             component: Shop,
-        }
-    }
+        },
+    },
 ];
 
 const mappingUrl: string = '/lnk.to';

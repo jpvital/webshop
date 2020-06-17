@@ -13,6 +13,10 @@ const theme = {
         SECONDARY: 'white',
         ERROR: 'red',
     },
+    SHADOW: {
+        LIGHT: '0 0.3rem 0.5rem rgba(0, 0, 0, 0.1)',
+        DARK: '0 0.3rem 0.5rem rgba(0, 0, 0, 0.25)', 
+    },
 }
 
 export default theme

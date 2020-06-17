@@ -4,7 +4,7 @@ import { socialNavBar, webshopRouter } from './components/navigation.components'
 import { Cart } from './components/cart/cart.component';
 import { Provider } from 'react-redux';
 import { store } from "./utils/store";
-import { Login } from './components/login/login.component';
+import { Login } from './components/login/auth.component';
 
 require('dotenv').config();
 

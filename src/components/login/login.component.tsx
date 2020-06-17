@@ -1,45 +1,38 @@
+import { inputValidators } from '../../utils/validators';
+import { Autocomplete } from '../forms/forms.styles';
 import * as React from 'react';
-import { Button, Text, Headers, ButtonText } from '../generic/generic';
-import { userIcon, closeIcon } from '../generic/icons';
-import { PopupBackground, PopupContent, PopupSection, PopupHeader } from '../generic/popups';
-import { LoginForm } from './login.form';                                   
-import { RegistrationForm } from './registration.form';
-import verbose from '../../global/verbose';
+import { AuthService, CognitoLogin } from '../../services/auth.service';
+import { GenericForm } from '../forms/generic-form.component';
 
-export const Login = () => {
-    const [showModal, setShowModal] = React.useState(false);
-    const [formContent, setFormType] = React.useState(false);
-    const { ENTER_CREDENTIALS, CREATE_ACCOUNT, NO_ACC_SIGN_UP } = verbose.USER_ACTION;
-    return (
-        <>
-            <Button style={{ marginBottom: '2rem' }} onClick={() => { setFormType(true); setShowModal(true)} }>
-                {userIcon()}
-                <ButtonText>Login</ButtonText>
-            </Button>
-            {showModal ?
-            <PopupBackground>
-                <PopupContent>
-                    <PopupHeader>
-                    <Headers.Header2>
-                        <Text>
-                            {formContent ? ENTER_CREDENTIALS : CREATE_ACCOUNT}
-                        </Text>
-                    </Headers.Header2>
-                    <Button style={{marginLeft: 'auto'}} onClick={() => setShowModal(false)} >
-                        {closeIcon()}
-                    </Button>
-                    </PopupHeader>
-                    <PopupSection style={{padding: '4rem'}}>
-                        {formContent ?
-                            <>
-                                <LoginForm/>
-                                <Text style={{textAlign: 'center', paddingTop: '2rem'}} onClick={() => setFormType(false)}>
-                                    {NO_ACC_SIGN_UP}
-                                </Text>
-                            </> : <RegistrationForm />}
-                    </PopupSection>
-                </PopupContent>
-            </PopupBackground> : null}
-        </>
-    );
+type HandleSubmitProps = {
+  email: string;
+  password: string;
+}
+
+export function Login() {
+  const authService = new AuthService();
+   
+  const fields = [
+    {
+      key: 'email', display: 'E-mail',
+      validator: inputValidators.email,
+      type: 'text',
+      autoComplete: Autocomplete.ON
+    },
+    {
+      key: 'password', display: 'Password',
+      validator: inputValidators.password, type: 'password',
+      autoComplete: Autocomplete.OFF
+    }
+  ];
+
+  const handleSubmit = (props: HandleSubmitProps): void => {
+    const { email, password } = props;
+    const loginCredentials: CognitoLogin = {
+      username: email, password,
+    };
+    authService.login(loginCredentials);
+  };
+
+  return <GenericForm fields={fields} onSubmit={handleSubmit} buttonText='Login'/>
 };
