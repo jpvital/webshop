@@ -3,7 +3,8 @@ import { Autocomplete } from '../forms/forms.styles';
 import * as React from 'react';
 import { AuthService, NewCognitoUser } from '../../services/auth.service';
 import { GenericForm } from '../forms/generic-form.component';
-import { ConfirmationCodeForm, CognitoConfirmationCodeProps } from '../forms/confirmation-code-form';
+import { CognitoConfirmationCodeProps } from '../forms/confirmation-code-form';
+import verbose from '../../global/verbose';
 
 type HandleSubmitProps = {
   email: string;
@@ -37,7 +38,7 @@ export function Registration() {
 
   const confirmationCodeFields = [
     {
-      key: 'confirmationCode', display: 'Confirmation code',
+      key: 'confirmationCode', display: verbose.INFO.CONFIRMATION_CODE_SENT,
       validator: inputValidators.confirmationCode,
       type: 'text', autoComplete: Autocomplete.OFF,
     },
@@ -64,13 +65,12 @@ export function Registration() {
     setRegistrationState((prevState: any) => ({ ...prevState, confirmationCode }));
   };
 
-  // return !registrationState.email ?
-  //   <GenericForm fields={registerFields} onSubmit={handleSubmitConfirmationCode} buttonText='Register'/>
-  //   : (!registrationFormState.confirmationCode ? <ConfirmationCodeForm onSubmit={handleSubmitConfirmationCode}/>
-  //       : <div>Success biotch</div>);
-  return !registrationState.email ?
-    <GenericForm fields={registerFields} onSubmit={handleSubmitRegister} buttonText='Register'/>
-    : (!registrationState.confirmationCode ?
-        <GenericForm fields={confirmationCodeFields} onSubmit={handleSubmitConfirmationCode} buttonText='Submit code'/>
-        : <div>Success biotch</div>);
+  const formProps: any = {
+    fields: !registrationState.email ? registerFields : confirmationCodeFields,
+    onSubmit: !registrationState.email ? handleSubmitRegister : handleSubmitConfirmationCode,
+    buttonText: !registrationState.email ? 'Register' : 'Submit code',
+  }
+
+  return !registrationState.confirmationCode ?
+    <GenericForm {...formProps}/> : <div>Success biotch</div>;
 };

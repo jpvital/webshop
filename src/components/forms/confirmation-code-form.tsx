@@ -3,7 +3,7 @@ import { useForm, ErrorMessage } from 'react-hook-form';
 import {
     Form, FormFeedback, FormFieldContainer, FormFieldLabel,
     FormFieldKey, FormFieldInput, FormSubmitButton, FormSubmitButtonText,
-} from "./forms.styles";
+} from './forms.styles';
 import { inputValidators } from '../../utils/validators';
 
 const CONFIRMATION_CODE_LABEL: string = 'Confirmation code:';
