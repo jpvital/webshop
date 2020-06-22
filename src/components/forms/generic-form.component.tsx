@@ -29,18 +29,27 @@ export const GenericForm = (params: GenericFormParams) => {
                 return (
                     <FormFieldContainer key={field.key}>
                         <FormFieldLabel>
-                            <FormFieldKey color={errorState[field.key] && errorState[field.key].length ? 'var(--color-error)': 'none' }>
+                            <FormFieldKey
+                                color={
+                                    errorState[field.key] &&
+                                    errorState[field.key].length ? 'var(--color-error)': 'none'
+                                }
+                            >
                                 {field.display}
                             </FormFieldKey>
-                            <FormFieldInput {...{borderColor: errorState[field.key] && errorState[field.key].length ? 'var(--color-error)': 'none' }}
-                                type={field.type} name={field.key}
-                                autoComplete={field.autoComplete}
-                                ref={ register({ validate: (value: string) => {
-                                    const validationErrors = field.validator(value);
-                                    setErrorState((prevState: any) => ({ ...prevState, [field.key]: validationErrors }));
-                                    return validationErrors[0];
+                            <FormFieldInput {...{
+                                    borderColor: errorState[field.key] &&
+                                    errorState[field.key].length ? 'var(--color-error)': 'none'
+                                }}
+                                    type={field.type} name={field.key}
+                                    autoComplete={field.autoComplete}
+                                    ref={ register({ validate: (value: string) => {
+                                        const validationErrors = field.validator(value);
+                                        setErrorState((prevState: any) => ({ ...prevState, [field.key]: validationErrors }));
+                                        return validationErrors[0];
+                                        }
                                     }
-                                })}
+                                )}
                             />
                         </FormFieldLabel>
                         <ErrorMessage errors={errors} name={field.key}>

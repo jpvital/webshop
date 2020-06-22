@@ -25,10 +25,4 @@ export default createGlobalStyle`
   body {
     font-size: 1.6rem;
   }
-
-  span {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
 `;

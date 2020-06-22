@@ -25,7 +25,6 @@ export const Form=styled.form`
 export const FormFieldLabel=styled.label`
     display: flex;
     flex-direction: column;
-    height: 6rem;
 `;
 
 export const FormFieldKey=styled(Text)`
@@ -36,7 +35,7 @@ export const FormFieldKey=styled(Text)`
 
 export const FormFieldInput=styled(Input)`
     width: 100%;
-    height: 100%;
+    height: 3rem;
     border-color: ${(props: any) => (props.borderColor || 'none')};
 `;
 
