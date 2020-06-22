@@ -5,6 +5,7 @@ import { AuthService, NewCognitoUser } from '../../services/auth.service';
 import { GenericForm } from '../forms/generic-form.component';
 import { CognitoConfirmationCodeProps } from '../forms/confirmation-code-form';
 import verbose from '../../global/verbose';
+import EmailService from '../../services/email.service';
 
 type HandleSubmitProps = {
   email: string;
@@ -14,6 +15,7 @@ type HandleSubmitProps = {
 
 export function Registration() {
   const authService = new AuthService();
+  const emailService = new EmailService();
   
   const registrationFormState: any = {};
   const [registrationState, setRegistrationState] = React.useState(registrationFormState);
@@ -63,6 +65,7 @@ export function Registration() {
     const { email } = registrationState;
     authService.handleConfirmationCode(email, confirmationCode);
     setRegistrationState((prevState: any) => ({ ...prevState, confirmationCode }));
+    emailService.accountCreated(email);
   };
 
   const formProps: any = {

@@ -6,7 +6,7 @@ import { Login as LoginForm } from './login.component';
 import { Registration as RegistrationForm } from './registration.component';
 import verbose from '../../global/verbose';
 
-export const Login = () => {
+export const Auth = () => {
     const [showModal, setShowModal] = React.useState(false);
     const [formContent, setFormType] = React.useState(false);
     const { ENTER_CREDENTIALS, CREATE_ACCOUNT, NO_ACC_SIGN_UP } = verbose.USER_ACTION;

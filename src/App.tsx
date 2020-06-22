@@ -4,7 +4,7 @@ import { socialNavBar, webshopRouter } from './components/navigation.components'
 import { Cart } from './components/cart/cart.component';
 import { Provider } from 'react-redux';
 import { store } from "./utils/store";
-import { Login } from './components/login/auth.component';
+import { Auth } from './components/login/auth.component';
 
 require('dotenv').config();
 
@@ -15,7 +15,7 @@ const App = () => {
         <div style={{width: '20rem', order: 2}}>
           <div style={{display: 'flex', alignItems: 'row'}}>
             <Cart />
-            <Login />
+            <Auth />
           </div>
           {socialNavBar}
         </div>
