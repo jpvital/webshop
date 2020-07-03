@@ -5,7 +5,6 @@ const EMPTY_CART = 'Your cart is empty.';
 const ENTER_CREDENTIALS = 'Enter your credentials';
 const NO_ACC_SIGN_UP = "Don't have an account? Sign up!";
 
-
 export default {
     USER_ACTION: {
         ENTER_CREDENTIALS, CREATE_ACCOUNT,
