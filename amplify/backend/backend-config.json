@@ -1,9 +1,0 @@
-{
-	"auth": {
-		"webshopAmplify": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	}
-}
