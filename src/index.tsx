@@ -6,10 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/theme';
 import GlobalStyle from './global/style';
-import awsconfig from './aws-exports';
-import Amplify from 'aws-amplify';
-
-Amplify.configure(awsconfig);
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

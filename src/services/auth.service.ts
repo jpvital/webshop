@@ -1,6 +1,7 @@
-import { Auth } from 'aws-amplify';
+// import { Auth } from 'aws-amplify';
+import { CognitoHandler } from './aws-cognito.handler';
 
-export type NewCognitoUser = {
+export type NewAmplifyCognitoUser = {
     password: string;
     username: string,
     attributes?: {
@@ -16,18 +17,18 @@ export type CognitoLogin = {
 };
 
 export class AuthService {
-    private apiService = Auth;
+    private client = new CognitoHandler();
     
-    register(newUserProps: NewCognitoUser){
-        return this.apiService.signUp(newUserProps);
+    register(newUserProps: NewAmplifyCognitoUser){
+        return this.client.signUp(newUserProps);
     };
 
     handleConfirmationCode(username: string, confirmationCode: string){
-        return this.apiService.confirmSignUp(username, confirmationCode);
+        return this.client.confirmSignUp(username, confirmationCode);
     };
 
     login(loginProps: CognitoLogin){
-        return this.apiService.signIn(loginProps);
+        return this.client.signIn(loginProps);
     };
 
 };

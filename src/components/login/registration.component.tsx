@@ -1,7 +1,7 @@
 import { inputValidators } from '../../utils/validators';
 import { Autocomplete } from '../forms/forms.styles';
 import * as React from 'react';
-import { AuthService, NewCognitoUser } from '../../services/auth.service';
+import { AuthService, NewAmplifyCognitoUser } from '../../services/auth.service';
 import { GenericForm } from '../forms/generic-form.component';
 import { CognitoConfirmationCodeProps } from '../forms/confirmation-code-form';
 import verbose from '../../global/verbose';
@@ -48,7 +48,7 @@ export function Registration() {
 
   const handleSubmitRegister = (props: HandleSubmitProps): void => {
     const { email, password, firstName } = props;
-    const newUser: NewCognitoUser = {
+    const newUser: NewAmplifyCognitoUser = {
       username: email,
       password,
       attributes: {
